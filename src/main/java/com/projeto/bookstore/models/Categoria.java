@@ -1,4 +1,4 @@
-package com.projeto.bookstore.model;
+package com.projeto.bookstore.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
