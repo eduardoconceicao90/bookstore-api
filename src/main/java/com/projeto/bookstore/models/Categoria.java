@@ -18,10 +18,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Categoria implements Serializable{
+public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,5 +30,12 @@ public class Categoria implements Serializable{
 
 	@OneToMany(mappedBy = "categoria")
 	private List<Livro> livros = new ArrayList<>();
+
+	public Categoria(Long id, String nome, String descricao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+	}
 
 }
