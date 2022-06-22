@@ -10,13 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Categoria implements Serializable {
 
@@ -30,7 +26,11 @@ public class Categoria implements Serializable {
 
 	@OneToMany(mappedBy = "categoria")
 	private List<Livro> livros = new ArrayList<>();
-
+	
+	public Categoria() {
+		
+	}
+	
 	public Categoria(Long id, String nome, String descricao) {
 		super();
 		this.id = id;
