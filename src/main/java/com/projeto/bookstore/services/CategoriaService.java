@@ -38,4 +38,9 @@ public class CategoriaService {
 		newObj.setDescricao(objDto.getDescricao());
 		return categoriaRepository.save(newObj);
 	}
+
+	public void delete(Long id) {
+		findById(id);
+		categoriaRepository.deleteById(id);
+	}
 }
