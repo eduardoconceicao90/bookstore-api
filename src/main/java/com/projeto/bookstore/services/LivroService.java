@@ -12,10 +12,10 @@ import com.projeto.bookstore.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class LivroService {
-	
+
 	@Autowired
 	private LivroRepository livroRepository;
-	
+
 	@Autowired
 	private CategoriaService categoriaService;
 
@@ -29,5 +29,25 @@ public class LivroService {
 		categoriaService.findById(id_cat);
 		return livroRepository.findAllByCategoria(id_cat);
 	}
-		
+
+	public Livro update(Long id, Livro obj) {
+		Livro newObj = findById(id);
+		updateData(newObj, obj);
+		return livroRepository.save(newObj);
+	}
+
+	private void updateData(Livro newObj, Livro obj) {
+
+		if (obj.getNome() != null) {
+			newObj.setNome(obj.getNome());
+		}
+
+		if (obj.getNome_autor() != null) {
+			newObj.setNome_autor(obj.getNome_autor());
+		}
+
+		if (obj.getTexto() != null) {
+			newObj.setTexto(obj.getTexto());
+		}
+	}
 }

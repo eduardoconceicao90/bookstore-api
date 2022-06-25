@@ -7,15 +7,15 @@ import com.projeto.bookstore.models.Livro;
 import lombok.Data;
 
 @Data
-public class LivroDTO implements Serializable{
+public class LivroDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String nome;
-	
+
 	public LivroDTO() {
-		
+
 	}
 
 	public LivroDTO(Livro obj) {
@@ -23,5 +23,5 @@ public class LivroDTO implements Serializable{
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 	}
-		
+
 }
