@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,6 +25,7 @@ import com.projeto.bookstore.dtos.LivroDTO;
 import com.projeto.bookstore.models.Livro;
 import com.projeto.bookstore.services.LivroService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroController {
@@ -43,20 +47,20 @@ public class LivroController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro obj) {
+	public ResponseEntity<Livro> update(@PathVariable Long id, @Valid @RequestBody Livro obj) {
 		Livro newObj = livroService.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
 
 	@PatchMapping(value = "/{id}") // Possibilita atualizar apenas uma parte do body sem afetar as demais.
-	public ResponseEntity<Livro> updatePatch(@PathVariable Long id, @RequestBody Livro obj) {
+	public ResponseEntity<Livro> updatePatch(@PathVariable Long id, @Valid @RequestBody Livro obj) {
 		Livro newObj = livroService.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
 
 	@PostMapping
 	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat,
-			@RequestBody Livro obj) {
+			@Valid @RequestBody Livro obj) {
 		Livro newObj = livroService.create(id_cat, obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}")
 				.buildAndExpand(newObj.getId()).toUri();
