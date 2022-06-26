@@ -66,9 +66,9 @@ public class LivroController {
 				.buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id){
+	public ResponseEntity<?> delete(@PathVariable Long id) {
 		livroService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
