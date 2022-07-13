@@ -1,2 +1,3 @@
 # bookstore-api
-Sistema para gerenciamento de livros por categorias, utilizando Spring Boot e Angular
+
+Deploy heroku: https://mybookstore-heroku.herokuapp.com/
