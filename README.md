@@ -1,3 +1,3 @@
 # bookstore-api
 
-Deploy heroku: https://mybookstore-heroku.herokuapp.com/
+Deploy heroku: https://bookstore-heroku-api.herokuapp.com/
