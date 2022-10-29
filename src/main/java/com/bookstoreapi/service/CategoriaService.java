@@ -26,5 +26,8 @@ public class CategoriaService {
 		return categoriaRepository.findAll();
 	}
 	
-
+	public Categoria criar(Categoria obj) {
+		obj.setId(null);
+		return categoriaRepository.save(obj);		
+	}
 }
