@@ -20,12 +20,18 @@ public class DBService {
 	private LivroRepository livroRepository;
 
 	public void instanciaDB() {
+		
 		Categoria cat1 = new Categoria(null, "Informática", "Livros de TI");
+		Categoria cat2 = new Categoria(null, "Ficção Científica", "Ficção Científica");
+		
 		Livro l1 = new Livro(null, "Clean Code", "Robert Martin", "Lorem ipsum", cat1);
+		Livro l2 = new Livro(null, "The Time Machine", "H.G. Wells", "Lorem ipsum", cat2);
+		Livro l3 = new Livro(null, "Engenharia de Software", "Louis V. Gerstner", "Lorem ipsum", cat1);
+		
+		cat1.getLivros().addAll(Arrays.asList(l1, l3));
+		cat2.getLivros().addAll(Arrays.asList(l2));
 
-		cat1.getLivros().addAll(Arrays.asList(l1));
-
-		categoriaRepository.saveAll(Arrays.asList(cat1));
-		livroRepository.saveAll(Arrays.asList(l1));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		livroRepository.saveAll(Arrays.asList(l1, l2, l3));
 	}
 }
