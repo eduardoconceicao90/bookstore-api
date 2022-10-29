@@ -39,5 +39,9 @@ public class CategoriaService {
 		return categoriaRepository.save(obj);		
 	}
 	
+	public void deletar(Long id) {
+		buscarPorId(id);
+		categoriaRepository.deleteById(id);
+	}
 	
 }
