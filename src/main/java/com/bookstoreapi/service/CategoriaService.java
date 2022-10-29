@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bookstoreapi.model.Categoria;
 import com.bookstoreapi.repository.CategoriaRepository;
+import com.bookstoreapi.service.exception.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -16,7 +17,9 @@ public class CategoriaService {
 	
 	public Categoria buscarPorId(Long id) {
 		Optional<Categoria> obj = categoriaRepository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado Id: " + id + ", tipo: " + Categoria.class.getName()));
+		
 	}
 
 }
