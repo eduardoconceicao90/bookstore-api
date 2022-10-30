@@ -50,5 +50,10 @@ public class LivroService {
 		newObj.setTexto(obj.getTexto());
 	}
 
+	public void deletar(Long id) {
+		buscarPorId(id);
+		livroRepository.deleteById(id);		
+	}
+
 
 }
