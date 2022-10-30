@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +24,7 @@ import com.bookstoreapi.dto.LivroDTO;
 import com.bookstoreapi.model.Livro;
 import com.bookstoreapi.service.LivroService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroResource {
@@ -43,14 +47,14 @@ public class LivroResource {
 	
 	@PostMapping
 	public ResponseEntity<Livro> criar(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat,
-			@RequestBody Livro obj){
+			@Valid @RequestBody Livro obj){
 		Livro newObj = livroService.criar(id_cat, obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(newObj);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Livro> atualizar(@PathVariable Long id, @RequestBody Livro obj) {
+	public ResponseEntity<Livro> atualizar(@PathVariable Long id, @Valid @RequestBody Livro obj) {
 		Livro newObj = livroService.atualizar(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
