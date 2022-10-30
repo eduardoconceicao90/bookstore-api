@@ -30,4 +30,16 @@ public class LivroService {
 		return livroRepository.listarPorCategoria(id_cat);
 	}
 
+	public Livro atualizar(Long id, Livro obj) {
+		Livro newObj = buscarPorId(id);		
+		updateData(newObj, obj);
+		return livroRepository.save(newObj);		
+	}
+
+	private void updateData(Livro newObj, Livro obj) {
+		newObj.setTitulo(obj.getTitulo());
+		newObj.setNome_autor(obj.getNome_autor());
+		newObj.setTexto(obj.getTexto());
+	}
+
 }

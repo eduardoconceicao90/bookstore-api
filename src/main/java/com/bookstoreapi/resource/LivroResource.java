@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +35,12 @@ public class LivroResource {
 		List<Livro> list = livroService.listar(id_cat);
 		List<LivroDTO> listDTO = list.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Livro> atualizar(@PathVariable Long id, @RequestBody Livro obj) {
+		Livro newObj = livroService.atualizar(id, obj);
+		return ResponseEntity.ok().body(newObj);
 	}
 	
 }
